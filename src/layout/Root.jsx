@@ -1,5 +1,5 @@
 import Footer from "../partials/Footer"
-import Header from "../partials/header"
+import Header from "../partials/Header"
 import { Outlet } from "react-router-dom"
 
 function Root(){
