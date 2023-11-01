@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 function Header(){
     return (
-        <Container className='header-section'>
+        <Container className='header-section' maxW="4xl">
           <Flex>
             <Box>
                 <Link to="/">Home</Link>
