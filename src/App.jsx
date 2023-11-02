@@ -7,8 +7,10 @@ import {
 // import reactLogo from './assets/react.svg'
 // import viteLogo from '/vite.svg'
 import './App.css'
-import HomePage from './pages/HomePage';
 import Root from './layout/Root';
+import HomePage from './pages/HomePage';
+import TeachersPage from "./pages/TeachersPage.jsx";
+
 function App() {
   const router = createBrowserRouter([{
      path: "/",
@@ -17,6 +19,10 @@ function App() {
       {
         index: true,
         element: <HomePage/>
+      },
+      {
+         path: "/teachers",
+         element: <TeachersPage />
       }
      ]
   }])
