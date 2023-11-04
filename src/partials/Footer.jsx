@@ -1,7 +1,7 @@
 import { Container, Flex, Box, Spacer } from '@chakra-ui/react'
 function Footer(){
     return (
-        <Container maxW="4xl"  className='footer-section'>
+        <Container maxW="4xl"  className='footer-section' p={4}>
             <Flex>
                 <Box md={6}>
                     Copy Write

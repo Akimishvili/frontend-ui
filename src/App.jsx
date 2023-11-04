@@ -10,6 +10,7 @@ import './App.css'
 import Root from './layout/Root';
 import HomePage from './pages/HomePage';
 import TeachersPage from "./pages/TeachersPage.jsx";
+import StudentPage from "./pages/StudentsPage.jsx";
 
 function App() {
   const router = createBrowserRouter([{
@@ -23,6 +24,10 @@ function App() {
       {
          path: "/teachers",
          element: <TeachersPage />
+      },
+      {
+          path: "/students",
+          element: <StudentPage />
       }
      ]
   }])
