@@ -1,6 +1,6 @@
-import StudentSection from "../sections/StudentSection.jsx";
-import TeachersSection from "../sections/TeachersSection.jsx";
-import StudentsSection from "../sections/StudentSection.jsx";
+import StudentSection from "../partials/StudentSection.jsx";
+import TeachersSection from "../partials/TeachersSection.jsx";
+import StudentsSection from "../partials/StudentSection.jsx";
 
 function StudentsPage(){
     return(

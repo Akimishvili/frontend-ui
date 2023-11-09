@@ -10,7 +10,11 @@ import './App.css'
 import Root from './layout/Root';
 import HomePage from './pages/HomePage';
 import TeachersPage from "./pages/TeachersPage.jsx";
+import AdminTeachersPage from "./pages/admin/TeachersPage.jsx";
 import StudentPage from "./pages/StudentsPage.jsx";
+import Dashboard from "./layout/Dashboard.jsx";
+import Desk from "./partials/Desk.jsx";
+import CreateTeacher from "./pages/admin/CreateTeacher.jsx";
 
 function App() {
   const router = createBrowserRouter([{
@@ -30,7 +34,25 @@ function App() {
           element: <StudentPage />
       }
      ]
-  }])
+  },{
+      path: "/admin",
+      element: <Dashboard />,
+      children: [
+          {
+              index: true,
+              element: <Desk />
+          },
+          {
+              path: "teachers",
+              element: <AdminTeachersPage/>
+          },
+          {
+              path: "teachers/create",
+              element: <CreateTeacher />
+          }
+      ]
+  }
+  ])
 
    return (
     <RouterProvider router={router}/>
