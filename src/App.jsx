@@ -10,11 +10,13 @@ import './App.css'
 import Root from './layout/Root';
 import HomePage from './pages/HomePage';
 import TeachersPage from "./pages/TeachersPage.jsx";
+import AdminStudentsPage from "./pages/admin/StudentsPage.jsx";
 import AdminTeachersPage from "./pages/admin/TeachersPage.jsx";
 import StudentPage from "./pages/StudentsPage.jsx";
 import Dashboard from "./layout/Dashboard.jsx";
 import Desk from "./partials/Desk.jsx";
 import CreateTeacher from "./pages/admin/CreateTeacher.jsx";
+import CreateStudent from "./pages/admin/CreateStudent.jsx";
 
 function App() {
   const router = createBrowserRouter([{
@@ -49,6 +51,14 @@ function App() {
           {
               path: "teachers/create",
               element: <CreateTeacher />
+          },
+          {
+              path: "students",
+              element: <AdminStudentsPage />
+          },
+          {
+              path: "students/create",
+              element: <CreateStudent />
           }
       ]
   }

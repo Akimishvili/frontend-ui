@@ -14,21 +14,21 @@ import {
 import {Link} from "react-router-dom";
 import {useEffect, useState} from "react";
 import axios from "axios";
-import styles from "./AdminTeacherCard.module.css"
-const {card_fluid_image, space_between} = styles
+import styles from "./AdminStudentCard.module.css"
 import {BACKEND_API_URL} from "../../config.js";
+const {card_fluid_image, space_between} = styles
 
-function AdminTeacherCard(props){
-    const { teacher, teachers, setTeachers } = props
-    const { id, first_name, last_name, email, phone, avatar} = teacher
+function AdminStudentCard(props){
+    const { student, students, setStudents } = props
+    const { id, first_name, last_name, email, phone, avatar} = student
     const [disabled, setDisabled] = useState(false)
-    async function destroyTeacher(id){
-        if(confirm("do you want to delete this teacher? 😏")){
+    async function destroyStudent(id){
+        if(confirm("do you want to delete this student? 😏")){
             setDisabled(true)
-            const url = [BACKEND_API_URL, 'teachers', id].join("/")
+            const url = [BACKEND_API_URL, 'students', id].join("/")
             const response = await axios.delete(url)
             if(response.status === 204){
-                setTeachers(teachers.filter((teacher) => teacher.id !== id))
+                setStudents(students.filter((student) => student.id !== id))
             }
         }
     }
@@ -38,7 +38,7 @@ function AdminTeacherCard(props){
                 <Image
                     src={avatar}
                     borderRadius='lg'
-                    className={[card_fluid_image].join(" ")}
+                    className={[card_fluid_image].join(' ')}
                 />
             </CardHeader>
             <CardBody>
@@ -48,7 +48,7 @@ function AdminTeacherCard(props){
             </CardBody>
             <Divider />
             <CardFooter>
-                <ButtonGroup gap='4' className={[space_between].join(" ")}>
+                <ButtonGroup gap='4' className={[space_between].join(' ')}>
                     <Button bg={"yellow.500"}>
                         <Link to="/admin/teachers/1/edit">
                             <span className="material-symbols-outlined">
@@ -56,7 +56,7 @@ function AdminTeacherCard(props){
                             </span>
                         </Link>
                     </Button>
-                    <Button bg={"red.500"} onClick={() => destroyTeacher(id)} isDisabled={disabled}>
+                    <Button bg={"red.500"} onClick={() => destroyStudent(id)} isDisabled={disabled}>
                         <span className="material-symbols-outlined">
                             delete
                         </span>
@@ -66,4 +66,4 @@ function AdminTeacherCard(props){
         </Card>
     )
 }
-export default AdminTeacherCard
+export default AdminStudentCard

@@ -2,11 +2,14 @@ import {
     FormControl
 , Input, Button, Select, Alert, AlertIcon,
 } from '@chakra-ui/react'
-import {useState} from "react";
+import {useState, useRef} from "react";
+import { useNavigate } from "react-router-dom";
 import axios from "axios"
 import {BACKEND_API_URL, BACKEND_LOCAL_URL} from "../../config.js";
 
 function CreateTeacher(){
+    const createForm = useRef()
+    const navigate = useNavigate();
     const [info, setInfo] = useState(null)
     const [teacher, setTeacher] = useState({
         first_name: "",
@@ -21,12 +24,13 @@ function CreateTeacher(){
         setTeacher({
             ...teacher,
             [e.target.name]: e.target.value
+
         })
     }
     async function storeTeacher(e){
         e.preventDefault()
         setDisabled(true)
-        const response = await fetch(`${BACKEND_LOCAL_URL}/teachers`, {
+        const response = await fetch(`${BACKEND_API_URL}/teachers`, {
             method: 'POST',
             headers: {
                 'Accept': 'application/json',
@@ -38,8 +42,12 @@ function CreateTeacher(){
             const resource = await response.json();
             setInfo({
                 status: "success",
-                message: "teacher successfully added"
+                message: "teacher successfully added 😊"
             })
+            createForm.current.reset()
+            setTimeout(() => {
+                navigate('/admin/teachers')
+            }, 1500)
         }
         // const response = await axios.post('http://127.0.0.1:8000/api/v1/teachers', JSON.stringify(teacher),{
         //     headers: {
@@ -57,7 +65,7 @@ function CreateTeacher(){
                     </Alert> : null}
 
 
-            <form onSubmit={storeTeacher}>
+            <form onSubmit={storeTeacher} ref={createForm}>
             <FormControl my={2}>
                 <Input type='text' placeholder="First Name" name="first_name" onChange={changeFormHandler}/>
             </FormControl>
