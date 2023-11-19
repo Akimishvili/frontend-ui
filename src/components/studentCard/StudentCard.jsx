@@ -2,6 +2,8 @@ import {Card, CardHeader, CardBody, CardFooter, Stack, Divider, Heading, Image} 
 import {Link} from "react-router-dom";
 import {useEffect, useState} from "react";
 import axios from "axios";
+import styles from "./StudentCard.module.css"
+const {card_image_fluid} = styles
 
 function StudentCard(props){
     const { student } = props
@@ -12,6 +14,7 @@ function StudentCard(props){
                 <Image
                     src={avatar}
                     borderRadius='lg'
+                    className={[card_image_fluid].join(" ")}
                 />
             </CardHeader>
             <CardBody>

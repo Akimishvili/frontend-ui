@@ -1,7 +1,6 @@
 import { Container, Heading  } from '@chakra-ui/react'
 import TeachersSection from "../partials/TeachersSection.jsx";
-import StudentsPage from "./StudentsPage.jsx";
-import StudentsSection from "../partials/StudentSection.jsx";
+import StudentsSlider from "../partials/StudentsSlider.jsx";
 function HomePage(){
     return (
         <main className='main-section'>
@@ -12,7 +11,9 @@ function HomePage(){
             </Container>
 
             <TeachersSection title={"Teachers Section"} is_dashboard={false} columns={3}/>
-            <StudentsSection title={"Students Section"}/>
+            <Container maxW="4xl" p={4}>
+                <StudentsSlider />
+            </Container>
         </main>
     )
 }

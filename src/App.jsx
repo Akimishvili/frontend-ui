@@ -17,6 +17,8 @@ import Dashboard from "./layout/Dashboard.jsx";
 import Desk from "./partials/Desk.jsx";
 import CreateTeacher from "./pages/admin/CreateTeacher.jsx";
 import CreateStudent from "./pages/admin/CreateStudent.jsx";
+import SingleStudentPage from "./pages/SingleStudentPage.jsx";
+import SingleTeacherPage from "./pages/SingleTeacherPage.jsx";
 
 function App() {
   const router = createBrowserRouter([{
@@ -32,8 +34,16 @@ function App() {
          element: <TeachersPage />
       },
       {
+          path: "/teachers/:id",
+          element: <SingleTeacherPage />
+      },
+      {
           path: "/students",
           element: <StudentPage />
+      },
+      {
+          path: "/students/:id",
+          element: <SingleStudentPage />
       }
      ]
   },{

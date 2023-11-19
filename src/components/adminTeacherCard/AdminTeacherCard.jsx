@@ -9,7 +9,6 @@ import {
     Image,
     ButtonGroup,
     Button,
-    filter
 } from '@chakra-ui/react'
 import {Link} from "react-router-dom";
 import {useEffect, useState} from "react";
