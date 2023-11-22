@@ -1,20 +1,20 @@
-import {Card, CardHeader, CardBody, CardFooter, Stack, Divider, Heading, Image} from '@chakra-ui/react'
+import {Card, CardHeader, CardBody, CardFooter, Stack, Divider, Heading, Image, Button} from '@chakra-ui/react'
 import {Link} from "react-router-dom";
 import {useEffect, useState} from "react";
 import axios from "axios";
 import styles from "./StudentCard.module.css"
-const {card_image_fluid} = styles
-
+const {card_fluid_image} = styles
 function StudentCard(props){
     const { student } = props
     const { id, first_name, last_name, email, phone, avatar} = student
+
     return (
         <Card>
             <CardHeader>
                 <Image
                     src={avatar}
                     borderRadius='lg'
-                    className={[card_image_fluid].join(" ")}
+                    className={[card_fluid_image].join(" ")}
                 />
             </CardHeader>
             <CardBody>
@@ -24,7 +24,9 @@ function StudentCard(props){
             </CardBody>
             <Divider />
             <CardFooter>
-                <Link to={`/students/${id}`}>Show Student</Link>
+                <Button colorScheme='telegram'>
+                    <Link to={`/students/${id}`}>Show Student</Link>
+                </Button>
             </CardFooter>
         </Card>
     )

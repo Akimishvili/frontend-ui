@@ -1,6 +1,10 @@
-.card_image_fluid{
+.card_fluid_image{
     width: 100%;
     aspect-ratio: 9/6;
     object-fit: cover;
     object-position: center center;
+}
+
+.custom_gap{
+    border: 5px solid transparent;
 }

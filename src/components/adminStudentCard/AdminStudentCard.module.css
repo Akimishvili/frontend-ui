@@ -1,9 +1,8 @@
-.card_fluid_image{
+.admin_card_image{
     width: 100%;
     aspect-ratio: 9/6;
     object-fit: cover;
     object-position: center center;
-
 }
 .space_between{
     display: flex;

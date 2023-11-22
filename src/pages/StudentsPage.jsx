@@ -5,7 +5,7 @@ import StudentsSection from "../partials/StudentSection.jsx";
 function StudentsPage(){
     return(
         <main className="main-section">
-            <StudentsSection title={null}  is_dashboard={false} columns={3}/>
+            <StudentsSection title={null} is_dashboard={false} columns={3} />
         </main>
     )
 

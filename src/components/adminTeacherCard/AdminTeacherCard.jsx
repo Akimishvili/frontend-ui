@@ -8,59 +8,58 @@ import {
     Heading,
     Image,
     ButtonGroup,
-    Button,
+    Button
 } from '@chakra-ui/react'
 import {Link} from "react-router-dom";
 import {useEffect, useState} from "react";
 import axios from "axios";
-import styles from "./AdminTeacherCard.module.css"
-const {card_fluid_image, space_between} = styles
-import {BACKEND_API_URL} from "../../config.js";
-
+import {BACKEND_API_URL, BACKEND_LOCAL_URL} from '../../config.js'
+import styles from './AdminTeacherCard.module.css'
+const  {admin_card_image, space_between} = styles
+const imageClasses = [admin_card_image]
 function AdminTeacherCard(props){
     const { teacher, teachers, setTeachers } = props
     const { id, first_name, last_name, email, phone, avatar} = teacher
-    const [disabled, setDisabled] = useState(false)
-    async function destroyTeacher(id){
-        if(confirm("do you want to delete this teacher? 😏")){
-            setDisabled(true)
-            const url = [BACKEND_API_URL, 'teachers', id].join("/")
+
+    async function destroyTeacher(id) {
+        if(confirm('do you want to destroy this teacher?')){
+            const url = [BACKEND_API_URL, 'teachers', id].join('/')
             const response = await axios.delete(url)
-            if(response.status === 204){
-                setTeachers(teachers.filter((teacher) => teacher.id !== id))
-            }
+            setTeachers(teachers.filter((teacher) => teacher.id !== id))
         }
     }
     return (
-        <Card>
-            <CardHeader>
+        <Card >
+            <CardHeader py={2} px={4}>
                 <Image
                     src={avatar}
                     borderRadius='lg'
-                    className={[card_fluid_image].join(" ")}
+                    className={imageClasses.join(' ')}
                 />
             </CardHeader>
-            <CardBody>
-                <Stack mt='6' spacing='3'>
+            <CardBody py={2} px={4}>
+                <Stack mt='6' spacing='3' style={{'--chakra-space-6': '0.5rem'}}>
                     <Heading as="h3" size='md'>{[first_name, last_name].join(" ")}</Heading>
                 </Stack>
             </CardBody>
             <Divider />
             <CardFooter>
-                <ButtonGroup gap='4' className={[space_between].join(" ")}>
-                    <Button bg={"yellow.500"}>
-                        <Link to="/admin/teachers/1/edit">
+                <ButtonGroup className={[space_between].join(" ")} >
+                    <Button bg={"orange.400"}>
+                        <Link to={`/admin/teachers/${id}/edit`}>
                             <span className="material-symbols-outlined">
                                 edit
                             </span>
                         </Link>
                     </Button>
-                    <Button bg={"red.500"} onClick={() => destroyTeacher(id)} isDisabled={disabled}>
+                    <Button bg={"red.400"} onClick={() => destroyTeacher(id)}>
                         <span className="material-symbols-outlined">
                             delete
                         </span>
                     </Button>
                 </ButtonGroup>
+
+
             </CardFooter>
         </Card>
     )

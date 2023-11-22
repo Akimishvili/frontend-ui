@@ -1,5 +1,8 @@
 import { Container, Heading  } from '@chakra-ui/react'
 import TeachersSection from "../partials/TeachersSection.jsx";
+import StudentsPage from "./StudentsPage.jsx";
+import StudentsSection from "../partials/StudentSection.jsx";
+import TeachersSlider from "../partials/TeachersSlider.jsx";
 import StudentsSlider from "../partials/StudentsSlider.jsx";
 function HomePage(){
     return (
@@ -9,8 +12,9 @@ function HomePage(){
                 <span className="material-symbols-outlined"> home</span> Home Page Content
                 </Heading>
             </Container>
-
-            <TeachersSection title={"Teachers Section"} is_dashboard={false} columns={3}/>
+            <Container maxW="4xl" p={4}>
+                <TeachersSlider />
+            </Container>
             <Container maxW="4xl" p={4}>
                 <StudentsSlider />
             </Container>

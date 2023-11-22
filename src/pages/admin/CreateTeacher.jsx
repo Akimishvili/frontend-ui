@@ -3,14 +3,14 @@ import {
 , Input, Button, Select, Alert, AlertIcon,
 } from '@chakra-ui/react'
 import {useState, useRef} from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from 'react-router-dom';
 import axios from "axios"
 import {BACKEND_API_URL, BACKEND_LOCAL_URL} from "../../config.js";
 
 function CreateTeacher(){
-    const createForm = useRef()
-    const navigate = useNavigate();
     const [info, setInfo] = useState(null)
+    const createForm = useRef()
+    const navigate = useNavigate()
     const [teacher, setTeacher] = useState({
         first_name: "",
         last_name: "",
@@ -24,7 +24,6 @@ function CreateTeacher(){
         setTeacher({
             ...teacher,
             [e.target.name]: e.target.value
-
         })
     }
     async function storeTeacher(e){
@@ -42,12 +41,13 @@ function CreateTeacher(){
             const resource = await response.json();
             setInfo({
                 status: "success",
-                message: "teacher successfully added 😊"
+                message: "teacher successfully added"
             })
             createForm.current.reset()
             setTimeout(() => {
-                navigate('/admin/teachers')
+                navigate("/admin/teachers")
             }, 1500)
+
         }
         // const response = await axios.post('http://127.0.0.1:8000/api/v1/teachers', JSON.stringify(teacher),{
         //     headers: {

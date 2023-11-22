@@ -3,13 +3,14 @@ import axios from "axios";
 import {Box, Container, SimpleGrid, Heading} from "@chakra-ui/react";
 import StudentCard from "../components/studentCard/StudentCard.jsx";
 import AdminStudentCard from "../components/adminStudentCard/AdminStudentCard.jsx";
+import {BACKEND_API_URL, BACKEND_LOCAL_URL} from "../config.js";
+
 function StudentsSection(props){
-    const {title, is_dashboard, columns} = props
     const [students, setStudents] = useState([])
-   console.log(props)
+    const {title, is_dashboard, columns} = props
     useEffect(() => {
         (async()=>{
-            const response = await axios.get("https://backend-dashboard.store/api/v1/students")
+            const response = await axios.get([BACKEND_API_URL, 'students'].join("/"))
             const {data} = response.data
             setStudents(data)
         })()
@@ -19,11 +20,13 @@ function StudentsSection(props){
             {title ? <Heading as='h3' size='md' noOfLines={1} pb={4}> { title } </Heading> : null}
             <SimpleGrid columns={columns} spacing={10}>
                 {students.map((student) =>
-                    (<Box key={crypto.randomUUID()}>
-                        {is_dashboard ? <AdminStudentCard student={student}
-                                                          students={students}
-                                                          setStudents={setStudents}  /> :  <StudentCard student={student}/>}
-
+                    (<Box key={crypto.randomUUID()}> {
+                        is_dashboard ? <AdminStudentCard student={student}
+                                                         students={students}
+                                                         setStudents={setStudents}/>
+                            :
+                            <StudentCard student={student}/>
+                    }
                     </Box>)
                 )}
             </SimpleGrid>
