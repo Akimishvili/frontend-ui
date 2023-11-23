@@ -6,3 +6,6 @@
 .main-section {
   flex: 1;
 }
+.swiper-pagination{
+  --swiper-pagination-bottom: -6px !important;
+}

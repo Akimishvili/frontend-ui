@@ -1,14 +1,14 @@
 import {Box, Card, CardBody, Container, SimpleGrid, Text, Heading, Grid, Kbd, Spinner} from "@chakra-ui/react";
 import DeskCard from "../components/deskCard/index.js";
 import {useEffect, useState} from "react";
-import {BACKEND_LOCAL_URL} from "../config.js";
+import {BACKEND_API_URL, BACKEND_LOCAL_URL} from "../config.js";
 import axios from "axios";
 
 function Desk(){
     const [tablesData, setTablesData] =  useState(null)
     useEffect(() => {
         (async() => {
-            const url = [BACKEND_LOCAL_URL, "tables-data"].join("/")
+            const url = [BACKEND_API_URL, "tables-data"].join("/")
             const response =  await axios.get(url)
             const {data} = response
             setTablesData(data)
@@ -71,7 +71,7 @@ function Desk(){
                             <span className="material-symbols-outlined">
                                 cast_for_education
                             </span>
-                            <Text>Teachers</Text>
+                            <Text>Colleges</Text>
                             <Kbd bg={'blue.500'}>{collegesCount}</Kbd>
                         </>
                     </DeskCard>
