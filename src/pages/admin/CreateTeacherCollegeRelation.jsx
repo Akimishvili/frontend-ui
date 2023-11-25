@@ -7,16 +7,16 @@ import { useNavigate } from 'react-router-dom';
 import axios from "axios"
 import {BACKEND_API_URL, BACKEND_LOCAL_URL} from "../../config.js";
 
-function CreateTeacherGroupRelation(){
+function CreateTeacherCollegeRelation(){
     const [info, setInfo] = useState(null)
     const createForm = useRef()
     const navigate = useNavigate()
     const [relation, setRelation] = useState({
         teacher_id: "",
-        group_id: ""
+        college_id: ""
     })
     const [teachers, setTeachers] = useState([])
-    const [groups, setGroups] = useState([])
+    const [colleges, setColleges] = useState([])
     useEffect(() => {
         (async() =>{
             const teachersUrl = [BACKEND_API_URL, 'teachers'].join("/")
@@ -25,11 +25,11 @@ function CreateTeacherGroupRelation(){
                 const teacherResource  = await teachersResponse.json()
                 setTeachers(teacherResource.data)
             }
-            const groupsUrl = [BACKEND_API_URL, 'groups'].join("/")
-            const groupsResponse = await fetch(groupsUrl)
-            if(groupsResponse.ok){
-                const groupsResource = await groupsResponse.json()
-                setGroups(groupsResource.data)
+            const collegesUrl = [BACKEND_API_URL, 'colleges'].join("/")
+            const collegesResponse = await fetch(collegesUrl)
+            if(collegesResponse.ok){
+                const collegesResource = await collegesResponse.json()
+                setColleges(collegesResource.data)
             }
         })()
     }, []);
@@ -43,7 +43,7 @@ function CreateTeacherGroupRelation(){
     async function storeRelation(e){
         e.preventDefault()
         setDisabled(true)
-        const response = await fetch([BACKEND_API_URL, 'teacher-group'].join('/'), {
+        const response = await fetch([BACKEND_API_URL, 'teacher-college'].join('/'), {
             method: 'POST',
             headers: {
                 'Accept': 'application/json',
@@ -78,13 +78,12 @@ function CreateTeacherGroupRelation(){
                                 {[teacher.first_name, teacher.last_name].join(' ')}
                             </option>)
                         )}
-
                     </Select>
                 </FormControl>
                 <FormControl my={2}>
-                    <Select placeholder='Select Group' value={relation.group_id} name="group_id" onChange={changeFormHandler}>
-                        {groups.map((group) => (
-                            <option value={group.id} key={crypto.randomUUID()}>{group.number}</option>
+                    <Select placeholder='Select College' value={relation.college_id} name="college_id" onChange={changeFormHandler}>
+                        {colleges.map((college) => (
+                            <option value={college.id} key={crypto.randomUUID()}>{college.name}</option>
                         ))}
 
                     </Select>
@@ -102,4 +101,4 @@ function CreateTeacherGroupRelation(){
     )
 }
 
-export default CreateTeacherGroupRelation
+export default CreateTeacherCollegeRelation

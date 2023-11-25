@@ -44,6 +44,46 @@ function DashboardAccordion(){
                     </List>
                 </AccordionPanel>
             </AccordionItem>
+            <AccordionItem bg={'yellow.200'} borderRadius="md" mb={1}>
+                <h2>
+                    <AccordionButton>
+                        <Box as="span" flex='1' textAlign='left' className={header_tab}>
+                           <span className="material-symbols-outlined">
+                                tenancy
+                           </span>
+                            <span className="placeholder">Teacher~Group</span>
+                        </Box>
+                        <AccordionIcon />
+                    </AccordionButton>
+                </h2>
+                <AccordionPanel pb={4}>
+                    <List spacing={3}>
+                        <ListItem>
+                            <Link to="/admin/teacher-group/create">Create Relation</Link>
+                        </ListItem>
+                    </List>
+                </AccordionPanel>
+            </AccordionItem>
+            <AccordionItem bg={'yellow.200'} borderRadius="md" mb={1}>
+                <h2>
+                    <AccordionButton>
+                        <Box as="span" flex='1' textAlign='left' className={header_tab}>
+                           <span className="material-symbols-outlined">
+                                tenancy
+                           </span>
+                            <span className="placeholder">Teacher~College</span>
+                        </Box>
+                        <AccordionIcon />
+                    </AccordionButton>
+                </h2>
+                <AccordionPanel pb={4}>
+                    <List spacing={3}>
+                        <ListItem>
+                            <Link to="/admin/teacher-college/create">Create Relation</Link>
+                        </ListItem>
+                    </List>
+                </AccordionPanel>
+            </AccordionItem>
             <AccordionItem bg={'pink.100'} borderRadius="md" mb={1}>
                 <h2>
                     <AccordionButton>
@@ -113,6 +153,26 @@ function DashboardAccordion(){
                     </List>
                 </AccordionPanel>
             </AccordionItem>
+            <AccordionItem bg={'purple.400'} borderRadius="md" mb={1}>
+                <h2>
+                    <AccordionButton>
+                        <Box as="span" flex='1' textAlign='left' className={header_tab}>
+                           <span className="material-symbols-outlined">
+                                tenancy
+                           </span>
+                            <span className="placeholder">Group~Student</span>
+                        </Box>
+                        <AccordionIcon />
+                    </AccordionButton>
+                </h2>
+                <AccordionPanel pb={4}>
+                    <List spacing={3}>
+                        <ListItem>
+                            <Link to="/admin/student-group/create">Create Relation</Link>
+                        </ListItem>
+                    </List>
+                </AccordionPanel>
+            </AccordionItem>
             {/*profession*/}
             <AccordionItem bg={'teal.400'} borderRadius="md" mb={1}>
                 <h2>
@@ -137,27 +197,7 @@ function DashboardAccordion(){
                     </List>
                 </AccordionPanel>
             </AccordionItem>
-            {/*profession*/}
-            <AccordionItem bg={'red.400'} borderRadius="md" mb={1}>
-                <h2>
-                    <AccordionButton>
-                        <Box as="span" flex='1' textAlign='left' className={header_tab}>
-                           <span className="material-symbols-outlined">
-                                tenancy
-                           </span>
-                            <span className="placeholder">Teacher~Group</span>
-                        </Box>
-                        <AccordionIcon />
-                    </AccordionButton>
-                </h2>
-                <AccordionPanel pb={4}>
-                    <List spacing={3}>
-                        <ListItem>
-                            <Link to="/admin/teacher-group/create">Create Relation</Link>
-                        </ListItem>
-                    </List>
-                </AccordionPanel>
-            </AccordionItem>
+
         </Accordion>
     )
 }

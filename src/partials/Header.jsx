@@ -9,27 +9,44 @@ function Header(){
                   <Flex gap={4}>
                       <Box>
                           <Button colorScheme='gray'>
-                              <Link to="/">Home</Link>
+                              <Link to="/">
+                                  <span className="material-symbols-outlined"> home</span>
+                              </Link>
                           </Button>
                       </Box>
                       <Box>
-                          <Button colorScheme='gray'>
-                              <Link to="/teachers">Teachers</Link>
+                          <Button bgColor={'yellow.100'}>
+                              <Link to="/teachers">
+                                  Teachers
+                              </Link>
                           </Button>
                       </Box>
                       <Box>
-                          <Button colorScheme='gray'>
-                              <Link to="/students">Students</Link>
+                          <Button bgColor={'pink.100'}>
+                              <Link to="/students">
+                                  Students
+                              </Link>
                           </Button>
                       </Box>
                       <Box>
-                          <Button colorScheme='gray'>
-                              <Link to="/groups">Groups</Link>
+                          <Button bgColor={'purple.300'}>
+                              <Link to="/groups">
+                                  Groups
+                              </Link>
                           </Button>
                       </Box>
                       <Box>
-                          <Button colorScheme='gray'>
-                              <Link to="/professions">Professions</Link>
+                          <Button bgColor={'teal.400'}>
+                              <Link to="/professions">
+                                  Professions
+                              </Link>
+                          </Button>
+                      </Box>
+                      <Box>
+                          <Button bgColor={'blue.500'}>
+                              <Link to="/professions">
+                                  Colleges
+                              </Link>
                           </Button>
                       </Box>
                   </Flex>

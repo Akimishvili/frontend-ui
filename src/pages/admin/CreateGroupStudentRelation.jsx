@@ -7,23 +7,23 @@ import { useNavigate } from 'react-router-dom';
 import axios from "axios"
 import {BACKEND_API_URL, BACKEND_LOCAL_URL} from "../../config.js";
 
-function CreateTeacherGroupRelation(){
+function CreateGroupStudentRelation(){
     const [info, setInfo] = useState(null)
     const createForm = useRef()
     const navigate = useNavigate()
     const [relation, setRelation] = useState({
-        teacher_id: "",
+        student_id: "",
         group_id: ""
     })
-    const [teachers, setTeachers] = useState([])
+    const [students, setStudents] = useState([])
     const [groups, setGroups] = useState([])
     useEffect(() => {
         (async() =>{
-            const teachersUrl = [BACKEND_API_URL, 'teachers'].join("/")
-            const teachersResponse = await fetch(teachersUrl)
-            if (teachersResponse.ok){
-                const teacherResource  = await teachersResponse.json()
-                setTeachers(teacherResource.data)
+            const studentsUrl = [BACKEND_API_URL, 'students'].join("/")
+            const studentsResponse = await fetch(studentsUrl)
+            if (studentsResponse.ok){
+                const studentsResource  = await studentsResponse.json()
+                setStudents(studentsResource.data)
             }
             const groupsUrl = [BACKEND_API_URL, 'groups'].join("/")
             const groupsResponse = await fetch(groupsUrl)
@@ -43,7 +43,7 @@ function CreateTeacherGroupRelation(){
     async function storeRelation(e){
         e.preventDefault()
         setDisabled(true)
-        const response = await fetch([BACKEND_API_URL, 'teacher-group'].join('/'), {
+        const response = await fetch([BACKEND_API_URL, 'student-group'].join('/'), {
             method: 'POST',
             headers: {
                 'Accept': 'application/json',
@@ -72,10 +72,10 @@ function CreateTeacherGroupRelation(){
 
             <form onSubmit={storeRelation} ref={createForm}>
                 <FormControl my={2}>
-                    <Select placeholder='Select Teacher' value={relation.teacher_id} name="teacher_id" onChange={changeFormHandler}>
-                        {teachers.map((teacher) =>
-                            (<option value={teacher.id} key={crypto.randomUUID()}>
-                                {[teacher.first_name, teacher.last_name].join(' ')}
+                    <Select placeholder='Select Student' value={relation.student_id} name="student_id" onChange={changeFormHandler}>
+                        {students.map((student) =>
+                            (<option value={student.id} key={crypto.randomUUID()}>
+                                {[student.first_name, student.last_name].join(' ')}
                             </option>)
                         )}
 
@@ -102,4 +102,4 @@ function CreateTeacherGroupRelation(){
     )
 }
 
-export default CreateTeacherGroupRelation
+export default CreateGroupStudentRelation
