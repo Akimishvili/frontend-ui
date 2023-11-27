@@ -7,11 +7,11 @@ function CollegeCard(props){
     return (
         <Card boxShadow='2xl'>
             <CardHeader>
-                <Text fontSize='3xl' as='b'>College Name: {name}</Text>
+                <Text fontSize='md' as='b'>College Name: {name}</Text>
             </CardHeader>
-            <CardHeader>
-                <Text fontSize='3xl' as='b'>College Address: {address}</Text>
-            </CardHeader>
+            {/*<CardHeader>*/}
+            {/*    <Text fontSize='md' as='b'>College Address: {address}</Text>*/}
+            {/*</CardHeader>*/}
             <CardBody>
                 <Button colorScheme='blue'>
                     <Link to={`/colleges/${id}`}>

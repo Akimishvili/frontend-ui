@@ -10,19 +10,26 @@ function CreateGroup(){
     const createForm = useRef()
     const navigate = useNavigate()
     const [professions, setProfessions] = useState([])
+    const [colleges, setColleges] = useState([])
     const [group, setGroup] = useState({
-        number: "",
+        college_id: "",
         profession_id: "",
+        number: "",
     })
 
     useEffect(() => {
         (async() => {
-            const url = [BACKEND_API_URL, "professions"].join("/")
-            const response = await  axios.get(url)
-            const {data} = response.data
-            setProfessions(data)
+            const professionsUrl = [BACKEND_API_URL, "professions"].join("/")
+            const professionsResponse = await  axios.get(professionsUrl)
+            const {data: professions} = professionsResponse.data
+            setProfessions(professions)
+            const collegesUrl = [BACKEND_API_URL, "colleges"].join("/")
+            const collegesResponse = await  axios.get(collegesUrl)
+            const {data: colleges} =  collegesResponse.data
+            setColleges(colleges)
         })()
     }, []);
+
     function changeFormHandler(e){
         setGroup({
             ...group,
@@ -55,10 +62,17 @@ function CreateGroup(){
     return(
         <form onSubmit={storeGroup} ref={createForm}>
             <FormControl my={2}>
-                <Input type='text' placeholder="Group Number" name="number" onChange={changeFormHandler}/>
+                <Select placeholder='Select College' value={group.college_id} name="college_id" onChange={changeFormHandler}>
+                    {
+                        colleges.map((college) =>
+                            (<option key={crypto.randomUUID()} value={college.id}>
+                                {college.name}
+                            </option>))
+                    }
+                </Select>
             </FormControl>
             <FormControl my={2}>
-                <Select placeholder='Select Visible' value={group.profession_id} name="profession_id" onChange={changeFormHandler}>
+                <Select placeholder='Select Profession' value={group.profession_id} name="profession_id" onChange={changeFormHandler}>
                     {
                         professions.map((profession) =>
                             (<option key={crypto.randomUUID()} value={profession.id}>
@@ -66,6 +80,9 @@ function CreateGroup(){
                             </option>))
                     }
                 </Select>
+            </FormControl>
+            <FormControl my={2}>
+                <Input type='text' placeholder="Group Number" name="number" onChange={changeFormHandler}/>
             </FormControl>
             <Button
                 mt={4}

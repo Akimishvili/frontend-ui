@@ -44,7 +44,7 @@ function Header(){
                       </Box>
                       <Box>
                           <Button bgColor={'blue.500'}>
-                              <Link to="/professions">
+                              <Link to="/colleges">
                                   Colleges
                               </Link>
                           </Button>

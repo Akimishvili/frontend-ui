@@ -130,6 +130,26 @@ function DashboardAccordion(){
                     </List>
                 </AccordionPanel>
             </AccordionItem>
+            <AccordionItem bg={'blue.600'} borderRadius="md" mb={1}>
+                <h2>
+                    <AccordionButton>
+                        <Box as="span" flex='1' textAlign='left' className={header_tab}>
+                           <span className="material-symbols-outlined">
+                                tenancy
+                           </span>
+                            <span className="placeholder">College~Profession</span>
+                        </Box>
+                        <AccordionIcon />
+                    </AccordionButton>
+                </h2>
+                <AccordionPanel pb={4}>
+                    <List spacing={3}>
+                        <ListItem>
+                            <Link to="/admin/college-profession/create">Create Relation</Link>
+                        </ListItem>
+                    </List>
+                </AccordionPanel>
+            </AccordionItem>
             <AccordionItem bg={'purple.300'} borderRadius="md" mb={1}>
                 <h2>
                     <AccordionButton>

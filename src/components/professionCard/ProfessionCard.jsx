@@ -6,7 +6,7 @@ function professionCard(props){
     return (
         <Card boxShadow='2xl'>
             <CardHeader>
-                <Text fontSize='2xl' as='b'>{name}</Text>
+                <Text fontSize='xl' as='b'>{name}</Text>
             </CardHeader>
             <CardBody>
                 <Button colorScheme='blue'>Details</Button>

@@ -1,25 +1,20 @@
-import {Box, Card, CardBody, CardHeader, Heading, Stack, StackDivider} from "@chakra-ui/react";
+import {Box, Button, Card, CardBody, CardHeader, Heading, Stack, StackDivider} from "@chakra-ui/react";
+import {Link} from "react-router-dom";
 
 function SingleGroup(props){
-    const {number, students, profession} = props
+    const {group} = props
+    const {id, number} = group
     return (
-        <Card>
+        <Card bg={'blue.200'}>
             <CardHeader>
-                <Heading size='md'>Group Number :{number}</Heading>
+                <Heading size='sm'>Number :{number}</Heading>
             </CardHeader>
             <CardBody>
                 <Stack divider={<StackDivider />} spacing='4'>
                     <Box>
-                        <Heading size='xs' textTransform='uppercase'>
-                            Profession : {profession.name}
-                        </Heading>
-                    </Box>
-                    <Box>
-                        {
-                            students.map((student) => (<Heading size='xs' textTransform='uppercase' key={crypto.randomUUID()}>
-                                {`${student.first_name}  ${student.last_name}`}
-                            </Heading>))
-                        }
+                        <Button colorScheme='black' variant='outline'>
+                            <Link to={`/groups/${id}`}>Show Group</Link>
+                        </Button>
                     </Box>
                 </Stack>
             </CardBody>

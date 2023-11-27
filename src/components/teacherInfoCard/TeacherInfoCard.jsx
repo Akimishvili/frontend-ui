@@ -3,7 +3,7 @@ import {Card, Image, Text, Flex, CardHeader, CardBody} from '@chakra-ui/react';
 
 function TeacherInfoCard(props){
     const {teacher} = props;
-    const { first_name, last_name, email, phone, identifier, avatar, visible } = teacher;
+    const { first_name, last_name, email, phone, avatar, visible } = teacher;
     return (
         <Card borderWidth="1px" borderRadius="lg" overflow="hidden" boxShadow="md">
            <CardHeader>
@@ -18,9 +18,6 @@ function TeacherInfoCard(props){
                 </Text>
                 <Text fontSize="md" color="gray.500">
                     Phone: {phone}
-                </Text>
-                <Text fontSize="md" color="gray.500">
-                    Identifier: {identifier}
                 </Text>
                 <Flex align="center">
                     <Text fontSize="md" color="gray.500">

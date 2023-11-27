@@ -9,3 +9,11 @@
 .swiper-pagination{
   --swiper-pagination-bottom: -6px !important;
 }
+.swiper-container{
+  padding-block: 1rem !important;
+  align-items: stretch;
+}
+
+.teal-200 {
+  background-color: #81E6D9 ;
+}

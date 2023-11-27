@@ -7,7 +7,7 @@ function GroupCard(props){
     return (
         <Card boxShadow='2xl'>
             <CardHeader>
-                <Text fontSize='3xl' as='b'>{number}</Text>
+                <Text fontSize='2xl' as='b'>Number: {number}</Text>
             </CardHeader>
             <CardBody>
                 <Button colorScheme='blue'>

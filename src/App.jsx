@@ -32,6 +32,9 @@ import CreateProfession from "./pages/admin/CreateProfession.jsx";
 import CreateCollege from "./pages/admin/CreateCollege.jsx";
 import CreateTeacherCollegeRelation from "./pages/admin/CreateTeacherCollegeRelation.jsx";
 import CreateGroupStudentRelation from "./pages/admin/CreateGroupStudentRelation.jsx";
+import CreateCollegeProfessionRelation from "./pages/admin/CreateCollegeProfessionRelation.jsx";
+import CollegesPage from "./pages/CollegesPage.jsx";
+import SingleCollegePage from "./pages/SingleCollegePage.jsx";
 function App() {
   const router = createBrowserRouter([{
      path: "/",
@@ -68,6 +71,14 @@ function App() {
       {
           path: "/professions",
           element: <ProfessionsPage />
+      },
+      {
+          path: "/colleges",
+          element: <CollegesPage />
+      },
+      {
+          path: "/colleges/:id",
+          element: <SingleCollegePage />
       }
      ]
   },{
@@ -125,6 +136,10 @@ function App() {
           {
               path: "colleges/create",
               element: <CreateCollege />
+          },
+          {
+              path: "college-profession/create",
+              element: <CreateCollegeProfessionRelation />
           },
           {
               path: "teacher-group/create",

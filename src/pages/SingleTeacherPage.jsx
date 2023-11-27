@@ -1,15 +1,22 @@
 import {useParams} from "react-router-dom";
 import {useEffect, useState} from "react";
 import axios from "axios";
-import {Container, Box, Spinner} from '@chakra-ui/react'
+import {Container, Box, Spinner, Heading} from '@chakra-ui/react'
 import {BACKEND_API_URL, BACKEND_LOCAL_URL} from "../config.js";
 import TeacherInfoCard from "../components/teacherInfoCard/index.js";
 import SingleGroup from "../components/singleGroup/SingleGroup.jsx";
+import SingleCollege from "../components/singleCollege/index.js";
+
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Pagination } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/pagination';
-import TeacherCard from "../components/teacherCard/TeacherCard.jsx";
+const styles = {
+    display: 'flex',
+    gap: '1rem',
+    marginBlock: '0.5rem'
+}
+
 
 function SingleTeacherPage(){
     const [teacher, setTeacher] = useState(null)
@@ -24,13 +31,21 @@ function SingleTeacherPage(){
     }, [id]);
 
     if(!teacher) return <Spinner />
-    const {groups} = teacher
+    const {groups, colleges} = teacher
     return (
             <Container>
                 <Box>
                     <TeacherInfoCard teacher={teacher}/>
                 </Box>
-                <Box>
+                <Box my={4}>
+                    <Heading size='md' style={styles}>
+                        <span className="material-symbols-outlined">
+                            groups
+                        </span>
+                        <span className="heading">
+                             Groups List
+                        </span>
+                    </Heading>
                     <Swiper
                         slidesPerView={3}
                         spaceBetween={30}
@@ -38,12 +53,40 @@ function SingleTeacherPage(){
                             clickable: true,
                         }}
                         modules={[Pagination]}
-                        className="mySwiper"
+                        className="swiper-container"
                     >
                         {
                             groups.map((group) => (
                                 <SwiperSlide key={crypto.randomUUID()}>
                                     <SingleGroup group={group}/>
+                                </SwiperSlide>
+                            ))
+                        }
+                    </Swiper>
+                </Box>
+                <Box my={4}>
+                    <Heading size='md' style={styles}>
+                        <span className="material-symbols-outlined">
+                            school
+                        </span>
+                        <span className="heading">
+                             Colleges List
+                        </span>
+                    </Heading>
+                    <Swiper
+                        slidesPerView={3}
+                        spaceBetween={30}
+                        pagination={{
+                            clickable: true,
+                        }}
+                        modules={[Pagination]}
+                        className="swiper-container"
+                        flex={1}
+                    >
+                        {
+                            colleges.map((college) => (
+                                <SwiperSlide key={crypto.randomUUID()} className={"teal-200"}>
+                                    <SingleCollege college={college} />
                                 </SwiperSlide>
                             ))
                         }

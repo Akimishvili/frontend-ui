@@ -2,28 +2,40 @@ import {
     FormControl
     , Input, Button, Select, Alert, AlertIcon
 } from '@chakra-ui/react'
-import {useState, useRef} from "react";
+import {useState, useRef, useEffect} from "react";
 import { useNavigate } from 'react-router-dom';
 import axios from "axios"
 import {BACKEND_API_URL, BACKEND_LOCAL_URL} from "../../config.js";
 
 function CreateStudent(){
     const [info, setInfo] = useState(null)
+    const [colleges, setColleges] = useState([])
     const avatar = useRef(null)
     const createForm = useRef()
     const navigate = useNavigate()
-    const [teacher, setTeacher] = useState({
+    const [student, setStudent] = useState({
         first_name: "",
         last_name: "",
         email: "",
         phone: "",
         identifier: "",
+        college_id: "",
         visible: "1"
     })
+    useEffect(()=>{
+        (async () => {
+            const url = [BACKEND_API_URL, "colleges"].join("/")
+            const response = await axios.get(url)
+            if(response.status === 200){
+                const {data} = response.data
+                setColleges(data)
+            }
+        })()
+    },[])
     const [disabled, setDisabled] = useState(false)
     function changeFormHandler(e){
-        setTeacher({
-            ...teacher,
+        setStudent({
+            ...student,
             [e.target.name]: e.target.value
         })
     }
@@ -31,12 +43,13 @@ function CreateStudent(){
         e.preventDefault()
         setDisabled(true)
         const formData = new FormData()
-        formData.append('first_name', teacher.first_name)
-        formData.append('last_name', teacher.last_name)
-        formData.append('email', teacher.email)
-        formData.append('phone', teacher.phone)
-        formData.append('identifier', teacher.identifier)
-        formData.append('visible', teacher.visible)
+        formData.append('first_name', student.first_name)
+        formData.append('last_name', student.last_name)
+        formData.append('email', student.email)
+        formData.append('phone', student.phone)
+        formData.append('identifier', student.identifier)
+        formData.append('college_id', student.college_id)
+        formData.append('visible', student.visible)
         formData.append('avatar', avatar.current.files[0])
         const response = await fetch(`${BACKEND_API_URL}/students`, {
             method: 'POST',
@@ -91,6 +104,15 @@ function CreateStudent(){
                 </FormControl>
                 <FormControl my={2}>
                     <Input type='file' placeholder="Phone" name="avatar" pt={'0.25rem'} ref={avatar}/>
+                </FormControl>
+                <FormControl my={2}>
+                    <Select placeholder='Select College' value={student.college_id} name="college_id" onChange={changeFormHandler}>
+                        {colleges.map((college) =>
+                            (<option key={crypto.randomUUID()} value={college.id}>
+                                {college.name}
+                            </option>)
+                        )}
+                    </Select>
                 </FormControl>
                 <FormControl my={2}>
                     <Select placeholder='Select Visible' name="visible" onChange={changeFormHandler}>
