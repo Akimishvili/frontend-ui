@@ -4,7 +4,7 @@ import axios from "axios";
 import {Container, Box, Spinner, Heading} from '@chakra-ui/react'
 import {BACKEND_API_URL, BACKEND_LOCAL_URL} from "../config.js";
 import ProfessionCard from "../components/professionCard/ProfessionCard.jsx";
-
+import TeacherCard from "../components/teacherCard/TeacherCard.jsx";
 
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Pagination } from 'swiper/modules';
@@ -30,7 +30,7 @@ function SingleCollegePage(){
     }, [id]);
 
     if(!college) return <Spinner />
-    const {professions} = college
+    const {professions, teachers} = college
     return (
         <Container>
             <Box>
@@ -66,6 +66,36 @@ function SingleCollegePage(){
                         professions.map((profession) => (
                             <SwiperSlide key={crypto.randomUUID()}>
                                 <ProfessionCard profession={profession}  style={{ boxShadow: 'none' }} />
+                            </SwiperSlide>
+                        ))
+                    }
+                </Swiper>
+            </Box>
+            <Box my={4}>
+                <Box my={4}>
+                    <Heading size='md' style={styles}>
+                    <span className="material-symbols-outlined">
+                          engineering
+                    </span>
+                        <span className="heading">
+                             Teachers List
+                        </span>
+                    </Heading>
+                </Box>
+                <Swiper
+                    slidesPerView={3}
+                    spaceBetween={30}
+                    pagination={{
+                        clickable: true,
+                    }}
+                    modules={[Pagination]}
+                    className="swiper-container"
+                    flex={1}
+                >
+                    {
+                        teachers.map((teacher) => (
+                            <SwiperSlide key={crypto.randomUUID()}>
+                                <TeacherCard teacher={teacher} />
                             </SwiperSlide>
                         ))
                     }

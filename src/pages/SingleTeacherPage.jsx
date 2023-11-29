@@ -1,7 +1,7 @@
 import {useParams} from "react-router-dom";
 import {useEffect, useState} from "react";
 import axios from "axios";
-import {Container, Box, Spinner, Heading} from '@chakra-ui/react'
+import {Container, Box, Spinner, Heading, Center} from '@chakra-ui/react'
 import {BACKEND_API_URL, BACKEND_LOCAL_URL} from "../config.js";
 import TeacherInfoCard from "../components/teacherInfoCard/index.js";
 import SingleGroup from "../components/singleGroup/SingleGroup.jsx";
@@ -30,7 +30,7 @@ function SingleTeacherPage(){
         })()
     }, [id]);
 
-    if(!teacher) return <Spinner />
+    if(!teacher) return <Center><Spinner size='xl' /></Center>
     const {groups, colleges} = teacher
     return (
             <Container>
@@ -74,7 +74,7 @@ function SingleTeacherPage(){
                         </span>
                     </Heading>
                     <Swiper
-                        slidesPerView={3}
+                        slidesPerView={2}
                         spaceBetween={30}
                         pagination={{
                             clickable: true,
